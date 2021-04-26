@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
+import { Menu as AntdMenu, Button } from 'antd';
 import {
   AppSlideBarState, MenuItem as MenuProps, UpdateAppSlideBar,
 } from "@/store/action";
 import {
-  Collapse, List,
+  List,
   ListItem, ListItemIcon, ListItemText,
 } from "@material-ui/core";
 import {
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     paddingLeft: theme.spacing(4),
   },
 }));
-
+const { SubMenu } = AntdMenu;
 const MenuItem: React.FC<MenuItemProps> = function({ route, className, AppSlideBar, doUpdateAppSlideBar, path }) {
   const classes = useStyles();
   const history = useHistory();
@@ -60,26 +61,25 @@ const MenuItem: React.FC<MenuItemProps> = function({ route, className, AppSlideB
   }
   return (
     <>
-      <ListItem selected={AppSlideBar.openKey === route.name} button className={className} onClick={onClick}>
-        <ListItemIcon>{route.meta.icon}</ListItemIcon>
-        <ListItemText primary={route.meta.title} />
-      </ListItem>
-      {!!route.children?.length && (
-        // <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
+      {!!route.children?.length ? (
+        <SubMenu icon={route.meta.icon} title={route.meta.title}>
+          <AntdMenu.Item>
             {route.children.map((child) => <MenuItem path={`${path}${child.path}`} route={child} className={classes.nested} key={child.name} AppSlideBar={AppSlideBar} doUpdateAppSlideBar={doUpdateAppSlideBar} />)}
-          </List>
-        // </Collapse>
+          </AntdMenu.Item>
+        </SubMenu>
+      ) : (
+        <AntdMenu.Item onClick={onClick}>
+          {route.meta.title}
+        </AntdMenu.Item>
       )}
     </>
   );
 };
-
 const Menu: React.FC<Props> = function({ doUpdateAppSlideBar, AppSlideBar }) {
   return (
-    <List>
+    <AntdMenu>
       {routes.map((route) => <MenuItem path={route.path} route={route} key={route.name} doUpdateAppSlideBar={doUpdateAppSlideBar} AppSlideBar={AppSlideBar}/>)}
-    </List>
+    </AntdMenu>
   );
 }
 

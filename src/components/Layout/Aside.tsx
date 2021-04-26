@@ -75,7 +75,7 @@ const Aside: React.FC<Props> = function({ AppSlideBar }) {
 };
 
 // 将 reducer 中的状态插入到组件的 props 中
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { AppSlideBar: any; }) => ({
   AppSlideBar: state.AppSlideBar,
 });
 
