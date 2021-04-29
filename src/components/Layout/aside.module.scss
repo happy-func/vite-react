@@ -18,3 +18,23 @@
   color: #fff;
   text-align: center;
 }
+.fixedMenu{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 89;
+}
+.tinyMenu{
+  animation-name: sortMenu;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes sortMenu {
+  from{
+    width: 240px;
+  }
+  to{
+    width: 80px;
+  }
+}
