@@ -1,10 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-const DashBordPage: React.FC = () => (
-  <div>
-    {[...new Array(100).keys()].map((item) => <div key={item}>仪表盘:{item + 1}</div>)}
-    <Link to="/accountManage">AccountManage</Link>
-  </div>
-);
+import styles from './index.module.scss';
+import ACharts from "@/page/DashBord/components/ACharts";
+import BCharts from "@/page/DashBord/components/BCharts";
+
+const DashBordPage: React.FC = () => {
+  return (
+    <div>
+      <div className={styles.chartRow}>
+        <div className={`${styles.aChart} ${styles.chartItem}`}>
+          <BCharts />
+        </div>
+        <div className={`${styles.aChart} ${styles.chartItem}`}>
+          <ACharts />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default DashBordPage;

@@ -1,0 +1,13 @@
+
+.chartRow{
+  display: flex;
+  height: 400px;
+  .chartItem{
+    flex: 1;
+    flex-shrink: 0;
+    &.aChart{
+      width: 500px;
+      height: 400px;
+    }
+  }
+}

@@ -31,7 +31,6 @@ const AppMain: React.FC = ({ children }) => {
       <Aside />
       <div className={classes.content}>
         <div className={classes.toolbar} />
-        <div>主要区域</div>
         {children}
       </div>
     </div>
