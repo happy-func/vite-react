@@ -56,6 +56,7 @@ const Aside: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
     <div
       style={{ width: 240 }}
     >
+      <div className={styles.asideTitle}>SYSTEM 管理后台</div>
       <Menu
         theme="dark"
         className={styles.menu}
