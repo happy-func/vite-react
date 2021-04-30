@@ -8,7 +8,7 @@ const AccountManagePage: React.FC = () => {
     <div style={style}>Row {index}</div>
   );
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: '100%' }}>
       <div>账号管理</div>
       <AutoSizer>
         {({ width, height }) => (
