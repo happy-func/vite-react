@@ -23,7 +23,8 @@
     "react-virtualized-auto-sizer": "^1.0.5",
     "react-window": "^1.8.6",
     "redux": "^4.1.0",
-    "sass-loader": "^11.0.1"
+    "sass-loader": "^11.0.1",
+    "wangeditor": "^4.6.17"
   },
   "devDependencies": {
     "@types/js-cookie": "^2.2.6",
