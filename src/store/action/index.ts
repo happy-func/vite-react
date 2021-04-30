@@ -1,7 +1,6 @@
 import {
   RESET_USERINFO, UPDATE_APP_SLIDE_BAR, UPDATE_USERINFO,
 } from "@/store/constant";
-import React, {ComponentClass} from "react";
 
 export interface UpdateUserInfoAction {
   userInfo: UserInfoState;
@@ -38,8 +37,8 @@ export interface MenuItem {
   exact: boolean;
   component: any;
   meta: {
-    icon: any;
-    title: string;
+    icon?: any;
+    title?: string;
   };
   children?: MenuItem[];
 }

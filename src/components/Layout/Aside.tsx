@@ -58,7 +58,7 @@ const Aside: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
       className={AppSlideBar.openDrawer ? '' : styles.tinyMenu}
     >
       <div className={`${styles.fixedMenu} ${AppSlideBar.openDrawer ? '' : styles.tinyMenu}`} style={{ width: 240, height: '100vh' }}>
-        <div className={styles.asideTitle}>SYSTEM 管理后台</div>
+        <div className={styles.asideTitle}>{AppSlideBar.openDrawer && `SYSTEM 管理后台`}</div>
         <Menu
           theme="dark"
           className={styles.menu}
@@ -68,12 +68,12 @@ const Aside: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
           inlineCollapsed={!AppSlideBar.openDrawer}
         >
           {routes.map((route) => (route.children?.length ? (
-              <SubMenu title={route.meta.title} key={route.name}>
+              <SubMenu title={route.meta.title} key={route.name} icon={route.meta.icon || <div />}>
                 {route.children.map((child) => (
                   <Menu.Item key={child.name}>{child.meta.title}</Menu.Item>
                 ))}
               </SubMenu>
-            ) : <Menu.Item key={route.name}>{route.meta.title}</Menu.Item>)
+            ) : <Menu.Item key={route.name} icon={route.meta.icon || <div />}>{route.meta.title}</Menu.Item>)
           )}
         </Menu>
       </div>

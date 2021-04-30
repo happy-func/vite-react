@@ -1,7 +1,7 @@
 import React, {lazy} from "react";
 import {MenuItem} from "@/store/action";
-import {MoveToInbox as InboxIcon, Mail as MailIcon} from "@material-ui/icons";
 import EmptyView from '@/components/EmptyView';
+import { DashboardFilled, IdcardFilled, GoldenFilled } from '@ant-design/icons';
 
 const routes: MenuItem[] = [{
   name: `DashBord`,
@@ -9,7 +9,7 @@ const routes: MenuItem[] = [{
   exact: true,
   component: lazy(() => import("@/page/DashBord/index")),
   meta: {
-    icon: <InboxIcon/>,
+    icon: <DashboardFilled />,
     title: `控制台`,
   },
 }, {
@@ -18,7 +18,7 @@ const routes: MenuItem[] = [{
   exact: true,
   component: lazy(() => import("@/page/AccountManage/index")),
   meta: {
-    icon: <MailIcon/>,
+    icon: <IdcardFilled/>,
     title: `账号管理`,
   },
 }, {
@@ -27,7 +27,7 @@ const routes: MenuItem[] = [{
   exact: true,
   component: EmptyView,
   meta: {
-    icon: <InboxIcon/>,
+    icon: <GoldenFilled/>,
     title: `测试子级`,
   },
   children: [{
@@ -36,7 +36,6 @@ const routes: MenuItem[] = [{
     exact: false,
     component: lazy(() => import("@/page/Child/Child")),
     meta: {
-      icon: <MailIcon/>,
       title: `子页面`,
     },
   }],
