@@ -1,4 +1,4 @@
-const isValid = (reg) => (text) => reg.test(text);
+const isValid = (reg: RegExp) => (text: string) => reg.test(text);
 
 // 用户名正则<4-10>
 export const isValidUserName = isValid(/^[A-Za-z][a-zA-Z0-9_]{3,9}$/);
