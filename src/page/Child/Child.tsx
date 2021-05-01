@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import E from 'wangeditor';
 
-const Child = function() {
+const Child: React.FC = function() {
   let editor: E;
   useEffect(function () {
     editor = new E('#editor');

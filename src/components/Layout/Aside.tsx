@@ -6,6 +6,7 @@ import { Menu } from "antd";
 import routes from "@/router/route";
 import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
+import { MenuItem as MenuItemProps } from "@/store/action";
 
 interface Props {
   AppSlideBar: AppSlideBarState;
@@ -26,22 +27,16 @@ const Aside: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
           openKey: key,
         },
       });
-      const path = (function () {
+      const path = (function genPath(routes): string {
         for(const route of routes) {
-          let str = '';
           if (route.name === key) {
             return route.path;
           } else if (route.children?.length) {
-            str = route.path;
-            for (const child of route.children) {
-              if (child.name === key) {
-                return str + child.path;
-              }
-            }
+            return route.path + genPath(route.children)
           }
         }
         return '/dashBord';
-      })();
+      })(routes);
       history.push(path);
     } else {
       doUpdateAppSlideBar({
@@ -52,6 +47,11 @@ const Aside: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
       });
     }
   }
+  const MenuItem = ({ route, ...props}: { route: MenuItemProps }) => (route.children?.length ? (
+    <SubMenu title={route.meta.title} key={route.name} icon={route.meta.icon || <div />} {...props}>
+      {route.children.map((child) => <MenuItem route={child} key={child.name} />)}
+    </SubMenu>
+  ) : <Menu.Item key={route.name} icon={route.meta.icon || <div />} {...props}>{route.meta.title}</Menu.Item>)
   return (
     <div
       style={{ width: 240, height: '100vh' }}
@@ -67,14 +67,7 @@ const Aside: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
           onSelect={onMenuSelect}
           inlineCollapsed={!AppSlideBar.openDrawer}
         >
-          {routes.map((route) => (route.children?.length ? (
-              <SubMenu title={route.meta.title} key={route.name} icon={route.meta.icon || <div />}>
-                {route.children.map((child) => (
-                  <Menu.Item key={child.name}>{child.meta.title}</Menu.Item>
-                ))}
-              </SubMenu>
-            ) : <Menu.Item key={route.name} icon={route.meta.icon || <div />}>{route.meta.title}</Menu.Item>)
-          )}
+          {routes.map((route) => <MenuItem route={route} key={route.name} />)}
         </Menu>
       </div>
     </div>
