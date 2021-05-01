@@ -9,5 +9,15 @@ export default defineConfig({
       '@': '/src'
     }
   },
-  base: '/vite-react/'
+  base: '/vite-react/',
+  build: {
+    rollupOptions: {
+      external: ['echarts'],
+      output: {
+        globals: {
+          echarts: 'echarts'
+        }
+      }
+    }
+  }
 })

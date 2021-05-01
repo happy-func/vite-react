@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import * as echarts from "echarts";
 
 const ACharts = function () {
   const aChartRef = useRef(null);
