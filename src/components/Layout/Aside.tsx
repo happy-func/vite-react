@@ -27,17 +27,18 @@ const Aside: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
           openKey: key,
         },
       });
-      const path = (function genPath(routes): string {
+      const path = (function genPath(routes, parentPath = ''): string {
+        let path = '';
         for(const route of routes) {
           if (route.name === key) {
-            return route.path;
+            return parentPath + route.path;
           } else if (route.children?.length) {
-            return route.path + genPath(route.children)
+            path = genPath(route.children, parentPath + route.path);
           }
         }
-        return '/dashBord';
+        return path;
       })(routes);
-      history.push(path);
+      history.push(path || 'dashBord');
     } else {
       doUpdateAppSlideBar({
         ...AppSlideBar,
