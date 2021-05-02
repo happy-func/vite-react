@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
+import gzipPlugin from 'rollup-plugin-gzip';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,7 +18,8 @@ export default defineConfig({
         globals: {
           echarts: 'echarts'
         }
-      }
+      },
+      plugins:[gzipPlugin()]
     }
   }
 })

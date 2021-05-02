@@ -42,7 +42,7 @@
 
 ### 路由约定
 
-- `name`路由`key`配置
+- `name`路由`key`配置，特性`unique`
 - `path`路由路径配置
 - `exact`是否路由严格模式
 - `component`页面组件，采取懒加载使用`lazy`导入
