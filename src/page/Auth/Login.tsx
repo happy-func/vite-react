@@ -23,6 +23,12 @@ import { isValidPassword, isValidUserName } from "@/constant/Regex";
 import { setAdminName, setToken } from "@/utils";
 
 const useStyles = makeStyles((theme) => ({
+  main: {
+    height: '100vh',
+    overflow: 'hidden',
+    width: '100%',
+    backgroundColor: '#b1ecd7ed'
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: `flex`,
@@ -102,61 +108,63 @@ const LoginPage: React.FC<Props> = ({ doUpdateUserInfo }) => {
     setRemember(!!isRemember);
   }, []);
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          登 录
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="用户名"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            value={username}
-            onChange={usernameChangeHandle}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="密码"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={passwordChangeHandle}
-          />
-          <FormControlLabel
-            control={<Checkbox checked={remember} onChange={rememberChangeHandle} value="remember" color="primary" />}
-            label="记住我"
-          />
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={loginHandle}
-          >
+    <div className={classes.main}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
             登 录
-          </Button>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="用户名"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              value={username}
+              onChange={usernameChangeHandle}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="密码"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={passwordChangeHandle}
+            />
+            <FormControlLabel
+              control={<Checkbox checked={remember} onChange={rememberChangeHandle} value="remember" color="primary" />}
+              label="记住我"
+            />
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={loginHandle}
+            >
+              登 录
+            </Button>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    </div>
   );
 };
 
