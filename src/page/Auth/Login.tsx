@@ -57,8 +57,8 @@ const LoginPage: React.FC<Props> = ({ doUpdateUserInfo }) => {
   const history = useHistory();
   const classes = useStyles();
   const [remember, setRemember] = useState(false);
-  const [username, setUserName] = useState(``);
-  const [password, setPassword] = useState(``);
+  const [username, setUserName] = useState(`admin`);
+  const [password, setPassword] = useState(`h57nMRtQn7aBjt`);
 
   function loginHandle() {
     if (!username) {
