@@ -371,10 +371,10 @@
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
 
-"@types/js-cookie@^2.2.6":
-  version "2.2.7"
-  resolved "https://registry.npmmirror.com/@types/js-cookie/download/@types/js-cookie-2.2.7.tgz#226a9e31680835a6188e887f3988e60c04d3f6a3"
-  integrity sha1-ImqeMWgINaYYjoh/OYjmDATT9qM=
+"@types/js-cookie@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.npmmirror.com/@types/js-cookie/download/@types/js-cookie-3.0.1.tgz#04aa743e2e0a85a22ee9aa61f6591a8bc19b5d68"
+  integrity sha512-7wg/8gfHltklehP+oyJnZrz9XBuX5ZPP4zB6UsI84utdlkRYLnOm2HfpLXazTwZA+fpGn0ir8tGNgVnMEleBGQ==
 
 "@types/prop-types@*":
   version "15.7.4"
@@ -933,10 +933,10 @@ isarray@0.0.1:
   resolved "https://registry.npmmirror.com/isarray/download/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
   integrity sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8=
 
-js-cookie@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmmirror.com/js-cookie/download/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
-  integrity sha1-aeEG3F1YBolFYpAqpbrsN0Tpsrg=
+js-cookie@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmmirror.com/js-cookie/download/js-cookie-3.0.1.tgz#9e39b4c6c2f56563708d7d31f6f5f21873a92414"
+  integrity sha1-njm0xsL1ZWNwjX0x9vXyGHOpJBQ=
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -1630,10 +1630,10 @@ resolve@^1.20.0:
     is-core-module "^2.2.0"
     path-parse "^1.0.6"
 
-rollup-plugin-gzip@^2.5.0:
-  version "2.5.1"
-  resolved "https://registry.npmmirror.com/rollup-plugin-gzip/download/rollup-plugin-gzip-2.5.1.tgz#afb962ecd3ebbc7dc3bc080612da789a5103f890"
-  integrity sha512-l9h3g0imsGvhjcSsxNRLHNW/gqRSSgaJLCKKWYeRclPHvDMDewmI43ZyiGJ3nc3+sZNy1pJnWzB3Bvm+tJI2jQ==
+rollup-plugin-gzip@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rollup-plugin-gzip/download/rollup-plugin-gzip-3.0.0.tgz#2a3c7c9a79c9448082c7a567ef819a9877a0f1f7"
+  integrity sha512-xvyKihEdKygVk0vJt0tKytVw/WgLEMghX1uWhNc7ANuTpXw46fhvdTTDGC1OHxFBSEwUQ1I34b7S3iD8l+L30g==
 
 rollup@^2.57.0:
   version "2.60.2"
@@ -1647,10 +1647,10 @@ safe-buffer@~5.1.1:
   resolved "https://registry.npmmirror.com/safe-buffer/download/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha1-mR7GnSluAxN0fVm9/St0XDX4go0=
 
-sass-loader@^11.0.1:
-  version "11.1.1"
-  resolved "https://registry.npmmirror.com/sass-loader/download/sass-loader-11.1.1.tgz#0db441bbbe197b2af96125bebb7f4be6476b13a7"
-  integrity sha1-DbRBu74Zeyr5YSW+u39L5kdrE6c=
+sass-loader@^12.3.0:
+  version "12.3.0"
+  resolved "https://registry.npmmirror.com/sass-loader/download/sass-loader-12.3.0.tgz#93278981c189c36a58cbfc37d4b9cef0cdc02871"
+  integrity sha1-kyeJgcGJw2pYy/w31LnO8M3AKHE=
   dependencies:
     klona "^2.0.4"
     neo-async "^2.6.2"
