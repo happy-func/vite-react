@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
+
+import AppSlideBar from '@/store/reducers/AppSlideBar';
 import userInfo from '@/store/reducers/userInfo';
-import AppSlideBar from "@/store/reducers/AppSlideBar";
 
 export default combineReducers({
   userInfo,

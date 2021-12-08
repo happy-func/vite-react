@@ -1,6 +1,4 @@
-import {
-  RESET_USERINFO, UPDATE_APP_SLIDE_BAR, UPDATE_USERINFO,
-} from "@/store/constant";
+import { RESET_USERINFO, UPDATE_APP_SLIDE_BAR, UPDATE_USERINFO } from '@/store/constant';
 
 export interface UpdateUserInfoAction {
   userInfo: UserInfoState;
@@ -50,14 +48,16 @@ export interface AppSlideBarState {
 }
 
 export interface UpdateAppSlideBarAction {
-  slideBarState: AppSlideBarState,
-  type: UPDATE_APP_SLIDE_BAR,
+  slideBarState: AppSlideBarState;
+  type: UPDATE_APP_SLIDE_BAR;
 }
 
 // 更新App侧边栏
-export const UpdateAppSlideBar = (slideBarState: AppSlideBarState): UpdateAppSlideBarAction => ({
+export const UpdateAppSlideBar = (
+  slideBarState: AppSlideBarState,
+): UpdateAppSlideBarAction => ({
   slideBarState,
   type: UPDATE_APP_SLIDE_BAR,
-})
+});
 
 export type UpdateAppSlideBar = typeof UpdateAppSlideBar;

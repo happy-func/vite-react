@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+
 import LoginPage from '@/page/Auth/Login';
+
 import MainRouter from './mainRouter';
 
 const AppRouter: React.FC = () => (

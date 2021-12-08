@@ -1,4 +1,4 @@
-import { UpdateAppSlideBarAction, AppSlideBarState } from '@/store/action';
+import { AppSlideBarState, UpdateAppSlideBarAction } from '@/store/action';
 import { UPDATE_APP_SLIDE_BAR } from '@/store/constant';
 
 const defaultState: AppSlideBarState = {
@@ -6,15 +6,18 @@ const defaultState: AppSlideBarState = {
   openKey: ``,
   openDrawer: true,
 };
-const AppSlideBar = (state: AppSlideBarState = defaultState, action: UpdateAppSlideBarAction): AppSlideBarState => {
+const AppSlideBar = (
+  state: AppSlideBarState = defaultState,
+  action: UpdateAppSlideBarAction,
+): AppSlideBarState => {
   switch (action.type) {
-  case UPDATE_APP_SLIDE_BAR:
-    return {
-      ...state,
-      ... action.slideBarState,
-    };
-  default:
-    return state;
+    case UPDATE_APP_SLIDE_BAR:
+      return {
+        ...state,
+        ...action.slideBarState,
+      };
+    default:
+      return state;
   }
 };
 

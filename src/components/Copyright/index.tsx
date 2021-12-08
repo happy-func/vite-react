@@ -1,5 +1,5 @@
+import { Typography } from '@material-ui/core';
 import React from 'react';
-import {Typography} from '@material-ui/core';
 
 const Copyright: React.FC = function () {
   return (
@@ -7,11 +7,12 @@ const Copyright: React.FC = function () {
       {`Copyright © `}
       <a color="inherit" href="https://github.com/happy-func/">
         Happy-func
-      </a>{` `}
+      </a>
+      {` `}
       {new Date().getFullYear()}
       {`.`}
     </Typography>
-  )
+  );
 };
 
 export default Copyright;

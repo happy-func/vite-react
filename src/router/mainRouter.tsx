@@ -1,18 +1,23 @@
-import React, { useEffect, Suspense } from 'react';
-import {
-  HashRouter as Router, Switch, Redirect, useHistory, Route,
-} from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
+import {
+  HashRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
+import { Dispatch } from 'redux';
+
 import AppMain from '@/components/Layout/AppMain';
-import {MenuItem, UpdateUserInfo, UserInfoState} from '@/store/action';
-import routes from "@/router/route";
-import { getAdminName, getToken } from "@/utils";
-import { Dispatch } from "redux";
-import LazyLoading from "@/components/LazyLoading";
+import LazyLoading from '@/components/LazyLoading';
+import routes from '@/router/route';
+import { MenuItem, UpdateUserInfo, UserInfoState } from '@/store/action';
+import { getAdminName, getToken } from '@/utils';
 
 interface Props {
   userInfo: UserInfoState;
-  doUpdateUserInfo: UpdateUserInfo,
+  doUpdateUserInfo: UpdateUserInfo;
 }
 
 const MainRouter: React.FC<Props> = ({ userInfo, doUpdateUserInfo }) => {
@@ -21,7 +26,7 @@ const MainRouter: React.FC<Props> = ({ userInfo, doUpdateUserInfo }) => {
   useEffect(() => {
     if (!userInfo.token) {
       if (!getToken()) {
-        history.push(`/login`)
+        history.push(`/login`);
       } else {
         doUpdateUserInfo({
           name: getAdminName(),
@@ -32,10 +37,21 @@ const MainRouter: React.FC<Props> = ({ userInfo, doUpdateUserInfo }) => {
   }, [userInfo.token]);
   const RouteItem: React.FC<any> = ({ route, parentPath }) => (
     <>
-      <Route path={`${parentPath || ``}${route.path}`} component={route.component} exact={!!route.exact} />
-      {!!route.children?.length && route.children.map((target: MenuItem) => <RouteItem key={target.name} route={target} parentPath={`${parentPath || ``}${route.path}`} />)}
+      <Route
+        path={`${parentPath || ``}${route.path}`}
+        component={route.component}
+        exact={!!route.exact}
+      />
+      {!!route.children?.length &&
+        route.children.map((target: MenuItem) => (
+          <RouteItem
+            key={target.name}
+            route={target}
+            parentPath={`${parentPath || ``}${route.path}`}
+          />
+        ))}
     </>
-  )
+  );
 
   return (
     <AppMain>
@@ -45,7 +61,9 @@ const MainRouter: React.FC<Props> = ({ userInfo, doUpdateUserInfo }) => {
             <Route path="/" exact>
               <Redirect to="/dashBord" />
             </Route>
-            {routes.map((route) => <RouteItem key={route.name} route={route} />)}
+            {routes.map((route) => (
+              <RouteItem key={route.name} route={route} />
+            ))}
           </Router>
         </Switch>
       </Suspense>
@@ -54,7 +72,9 @@ const MainRouter: React.FC<Props> = ({ userInfo, doUpdateUserInfo }) => {
 };
 
 // 将 reducer 中的状态插入到组件的 props 中
-const mapStateToProps = (state: { userInfo: UserInfoState; }): { userInfo: UserInfoState } => ({
+const mapStateToProps = (state: {
+  userInfo: UserInfoState;
+}): { userInfo: UserInfoState } => ({
   userInfo: state.userInfo,
 });
 
