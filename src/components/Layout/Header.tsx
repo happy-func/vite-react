@@ -32,7 +32,7 @@ const Header: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) 
             easing: AppSlideBar.openDrawer ? theme.transitions.easing.easeOut : theme.transitions.easing.sharp,
             duration: AppSlideBar.openDrawer ? theme.transitions.duration.enteringScreen : theme.transitions.duration.leavingScreen,
           }),
-        width: AppSlideBar.openDrawer ? `100%` : `calc(100% - ${drawerWidth}px)`,
+        width: AppSlideBar.openDrawer ? `calc(100% - ${drawerWidth}px)` : `100%`,
         zIndex: 1201,
         marginLeft: AppSlideBar.openDrawer ? 0 : drawerWidth,
       }}>
