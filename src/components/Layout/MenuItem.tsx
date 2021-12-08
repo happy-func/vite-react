@@ -9,9 +9,9 @@ import {
   AccordionDetails,
   AccordionSummary,
   Typography,
-} from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
-import { ExpandMore } from '@material-ui/icons';
+} from '@mui/material';
+import Icon from '@mui/material/Icon';
+import { ExpandMore } from '@mui/icons-material';
 import React from 'react';
 
 import { MenuItem as MenuItemProps } from '@/store/action';

@@ -1,7 +1,5 @@
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
-import { createStyles, makeStyles, Theme } from '@mui/material';
-import clsx from 'clsx';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -16,24 +14,7 @@ interface Props {
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    appBarShift: {
-      marginLeft: drawerWidth,
-      transition: theme.transitions.create([`margin`, `width`], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    menuButton: {
-      marginRight: 36,
-    },
-  }),
-);
-
 const Header: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) {
-  const classes = useStyles();
-
   function changeOpenDrawerHandle() {
     doUpdateAppSlideBar({
       ...AppSlideBar,
@@ -45,17 +26,15 @@ const Header: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) 
   return (
     <AppBar
       position="fixed"
-      className={clsx(classes.appBar, {
-        [classes.appBarShift]: AppSlideBar.openDrawer,
-      })}
       sx={{
         transition: (theme) =>
           theme.transitions.create([`margin`, `width`], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
+            easing: AppSlideBar.openDrawer ? theme.transitions.easing.easeOut : theme.transitions.easing.sharp,
+            duration: AppSlideBar.openDrawer ? theme.transitions.duration.enteringScreen : theme.transitions.duration.leavingScreen,
           }),
         width: AppSlideBar.openDrawer ? `100%` : `calc(100% - ${drawerWidth}px)`,
         zIndex: 1201,
+        marginLeft: AppSlideBar.openDrawer ? 0 : drawerWidth,
       }}>
       <Toolbar>
         <IconButton
@@ -63,7 +42,9 @@ const Header: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) 
           aria-label="open drawer"
           onClick={changeOpenDrawerHandle}
           edge="start"
-          className={clsx(classes.menuButton)}>
+          sx={{
+            marginRight: 36,
+          }}>
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap className={styles.title} />
