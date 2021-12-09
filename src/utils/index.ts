@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
-import { AdminNameKey, TokenKey } from "@/constant/StorageKey";
+
+import { AdminNameKey, TokenKey } from '@/constant/StorageKey';
 
 const options = {
   expires: 7,

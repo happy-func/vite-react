@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 const BCharts = function () {
   const chartRef = useRef(null);
@@ -7,38 +7,38 @@ const BCharts = function () {
       text: '浏览器占比变化',
       subtext: '纯属虚构',
       top: 10,
-      left: 10
+      left: 10,
     },
     tooltip: {
-      trigger: 'item'
+      trigger: 'item',
     },
     legend: {
       type: 'scroll',
       bottom: 10,
-      data: (function (){
+      data: (function () {
         var list = [];
-        for (var i = 1; i <=28; i++) {
+        for (var i = 1; i <= 28; i++) {
           list.push(i + 2000 + '');
         }
         return list;
-      })()
+      })(),
     },
     visualMap: {
       top: 'middle',
       right: 10,
       color: ['red', 'yellow'],
-      calculable: true
+      calculable: true,
     },
     radar: {
       indicator: [
-        { text: 'IE8-', max: 400},
-        { text: 'IE9+', max: 400},
-        { text: 'Safari', max: 400},
-        { text: 'Firefox', max: 400},
-        { text: 'Chrome', max: 400}
-      ]
+        { text: 'IE8-', max: 400 },
+        { text: 'IE9+', max: 400 },
+        { text: 'Safari', max: 400 },
+        { text: 'Firefox', max: 400 },
+        { text: 'Chrome', max: 400 },
+      ],
     },
-    series: (function (){
+    series: (function () {
       var series = [];
       for (var i = 1; i <= 28; i++) {
         series.push({
@@ -46,37 +46,38 @@ const BCharts = function () {
           type: 'radar',
           symbol: 'none',
           lineStyle: {
-            width: 1
+            width: 1,
           },
           emphasis: {
             areaStyle: {
-              color: 'rgba(0,250,0,0.3)'
-            }
+              color: 'rgba(0,250,0,0.3)',
+            },
           },
-          data: [{
-            value: [
-              (40 - i) * 10,
-              (38 - i) * 4 + 60,
-              i * 5 + 10,
-              i * 9,
-              i * i /2
-            ],
-            name: i + 2000 + ''
-          }]
+          data: [
+            {
+              value: [(40 - i) * 10, (38 - i) * 4 + 60, i * 5 + 10, i * 9, (i * i) / 2],
+              name: i + 2000 + '',
+            },
+          ],
         });
       }
       return series;
-    })()
+    })(),
   };
   useEffect(function () {
     // @ts-ignore
     const myChart = echarts.init(chartRef.current);
     myChart.setOption(option);
   }, []);
-  return <div style={{
-    width: '100%',
-    height: '100%',
-  }} ref={chartRef} />
-}
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
+      ref={chartRef}
+    />
+  );
+};
 
 export default BCharts;

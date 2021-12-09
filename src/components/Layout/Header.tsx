@@ -1,49 +1,20 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { AppSlideBarState, UpdateAppSlideBar } from "@/store/action";
-import {
-  AppBar, IconButton, Toolbar, Typography,
-} from '@material-ui/core';
-import {
-  makeStyles, Theme, createStyles,
-} from '@material-ui/core/styles';
-import clsx from "clsx";
-import styles from '@/components/Layout/header.module.scss';
-import { Menu as MenuIcon } from '@material-ui/icons';
+import { Menu as MenuIcon } from '@mui/icons-material';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+
+import { AppSlideBarState, UpdateAppSlideBar } from '@/store/action';
 
 interface Props {
   AppSlideBar: AppSlideBarState;
   doUpdateAppSlideBar: UpdateAppSlideBar;
 }
 
-const drawerWidth = 240;
+export const drawerWidth = 240;
+export const miniDrawerWidth = 80;
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  appBar: {
-    transition: theme.transitions.create([`margin`, `width`], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    zIndex: 1201,
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create([`margin`, `width`], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-}),
-)
-
-const Header: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
-  const classes = useStyles();
-
+const Header: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) {
   function changeOpenDrawerHandle() {
     doUpdateAppSlideBar({
       ...AppSlideBar,
@@ -55,34 +26,42 @@ const Header: React.FC<Props> = function({ AppSlideBar, doUpdateAppSlideBar }) {
   return (
     <AppBar
       position="fixed"
-      className={clsx(classes.appBar, {
-        [classes.appBarShift]: AppSlideBar.openDrawer,
-      })}
-    >
+      sx={{
+        transition: (theme) =>
+          theme.transitions.create([`margin`, `width`], {
+            easing: AppSlideBar.openDrawer ? theme.transitions.easing.easeOut : theme.transitions.easing.sharp,
+            duration: AppSlideBar.openDrawer ? theme.transitions.duration.enteringScreen : theme.transitions.duration.leavingScreen,
+          }),
+        width: AppSlideBar.openDrawer ? `calc(100% - ${drawerWidth}px)` : `100%`,
+        zIndex: 1201,
+        marginLeft: AppSlideBar.openDrawer ? 0 : drawerWidth,
+      }}>
       <Toolbar>
         <IconButton
           color="inherit"
           aria-label="open drawer"
           onClick={changeOpenDrawerHandle}
           edge="start"
-          className={clsx(classes.menuButton)}
-        >
+          sx={{
+            marginRight: 36,
+          }}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap className={styles.title} />
+        <Typography variant="h6" noWrap sx={{ flex: 1 }} />
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 // 将 reducer 中的状态插入到组件的 props 中
-const mapStateToProps = (state: { AppSlideBar: any; }) => ({
+const mapStateToProps = (state: { AppSlideBar: any }) => ({
   AppSlideBar: state.AppSlideBar,
 });
 
 // 将 对应action 插入到组件的 props 中
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  doUpdateAppSlideBar: (appSlideBarState: AppSlideBarState) => dispatch(UpdateAppSlideBar(appSlideBarState)),
+  doUpdateAppSlideBar: (appSlideBarState: AppSlideBarState) =>
+    dispatch(UpdateAppSlideBar(appSlideBarState)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

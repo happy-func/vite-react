@@ -1,12 +1,10 @@
 import React from 'react';
-import { FixedSizeList } from "react-window";
-import AutoSizer from "react-virtualized-auto-sizer";
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { FixedSizeList } from 'react-window';
 
 const AccountManagePage: React.FC = () => {
   // @ts-ignore
-  const Row = ({ index, style }) => (
-    <div style={style}>Row {index}</div>
-  );
+  const Row = ({ index, style }) => <div style={style}>Row {index}</div>;
   return (
     <div style={{ height: '100%' }}>
       <div>账号管理</div>
@@ -18,7 +16,7 @@ const AccountManagePage: React.FC = () => {
         )}
       </AutoSizer>
     </div>
-  )
+  );
 };
 
 export default AccountManagePage;

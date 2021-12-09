@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
 import E from 'wangeditor';
 
-const Child: React.FC = function() {
+const Child: React.FC = function () {
   let editor: E;
   useEffect(function () {
     editor = new E('#editor');
     editor.create();
     return () => {
       editor.destroy();
-    }
+    };
   }, []);
 
   // 获取html
   function getHtml() {
-    alert(editor.txt.html())
+    alert(editor.txt.html());
   }
 
   // 获取text
   function getText() {
-    alert(editor.txt.text())
+    alert(editor.txt.text());
   }
   return (
     <div>

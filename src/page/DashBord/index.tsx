@@ -1,7 +1,9 @@
 import React from 'react';
+
+import ACharts from '@/page/DashBord/components/ACharts';
+import BCharts from '@/page/DashBord/components/BCharts';
+
 import styles from './index.module.scss';
-import ACharts from "@/page/DashBord/components/ACharts";
-import BCharts from "@/page/DashBord/components/BCharts";
 
 const DashBordPage: React.FC = () => {
   return (

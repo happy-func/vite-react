@@ -1,39 +1,38 @@
+import { Box, styled } from '@mui/material';
 import React from 'react';
-import Header from "@/components/Layout/Header";
-import Aside from '@/components/Layout/Aside';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: `flex`,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    position: `relative`,
-  },
-  toolbar: {
-    display: `flex`,
-    alignItems: `center`,
-    justifyContent: `flex-end`,
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-  },
-}))
+import Aside from '@/components/Layout/Aside';
+import Header from '@/components/Layout/Header';
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  display: `flex`,
+  alignItems: `center`,
+  justifyContent: `flex-end`,
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
 
 const AppMain: React.FC = ({ children }) => {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        display: `flex`,
+        width: `100vw`
+      }}>
       <Header />
       <Aside />
-      <div className={classes.content}>
-        <div className={classes.toolbar} />
+      <Box
+        sx={{
+          flexGrow: 1,
+          padding: (theme) => theme.spacing(3),
+          position: `relative`,
+          overflow: 'hidden'
+        }}>
+        <StyledBox />
         {children}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

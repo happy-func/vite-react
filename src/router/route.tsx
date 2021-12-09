@@ -1,34 +1,36 @@
-import React, { lazy } from "react";
-import { MenuItem } from "@/store/action";
+import { lazy } from 'react';
+
 import EmptyView from '@/components/EmptyView';
-import { DashboardFilled, IdcardFilled, GoldenFilled } from '@ant-design/icons';
+import { MenuItem } from '@/store/action';
 
 const routes: MenuItem[] = [
   {
     name: `DashBord`,
     path: `/dashBord`,
     exact: true,
-    component: lazy(() => import("@/page/DashBord/index")),
+    component: lazy(() => import('@/page/DashBord/index')),
     meta: {
-      icon: <DashboardFilled/>,
+      icon: `dashboard`,
       title: `控制台`,
     },
-  }, {
+  },
+  {
     name: `AccountManage`,
     path: `/accountManage`,
     exact: true,
-    component: lazy(() => import("@/page/AccountManage/index")),
+    component: lazy(() => import('@/page/AccountManage/index')),
     meta: {
-      icon: <IdcardFilled/>,
+      icon: `badge`,
       title: `账号管理`,
     },
-  }, {
+  },
+  {
     name: `Child`,
     path: `/child`,
     exact: true,
     component: EmptyView,
     meta: {
-      icon: <GoldenFilled/>,
+      icon: `golf_course`,
       title: `测试子级`,
     },
     children: [
@@ -36,10 +38,10 @@ const routes: MenuItem[] = [
         name: `ChildEl`,
         path: `/child`,
         exact: false,
-        component: lazy(() => import("@/page/Child/Child")),
+        component: lazy(() => import('@/page/Child/Child')),
         meta: {
           title: `子页面`,
-        }
+        },
       },
       {
         name: 'ChildEmpty',
@@ -47,7 +49,7 @@ const routes: MenuItem[] = [
         exact: false,
         component: EmptyView,
         meta: {
-          title: '深层'
+          title: '深层',
         },
         children: [
           {
@@ -56,11 +58,11 @@ const routes: MenuItem[] = [
             exact: false,
             component: lazy(() => import('@/page/Child/Deep')),
             meta: {
-              title: '嵌套'
-            }
-          }
-        ]
-      }
+              title: '嵌套',
+            },
+          },
+        ],
+      },
     ],
   },
 ];

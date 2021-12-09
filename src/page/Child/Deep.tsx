@@ -1,6 +1,6 @@
-import React from "react";
-import Icon from "@material-ui/core/Icon";
-import { Box, IconButton } from "@material-ui/core";
+import { Box, IconButton } from '@mui/material';
+import Icon from '@mui/material/Icon';
+import React from 'react';
 
 const Deep: React.FC = function () {
   return (
@@ -13,6 +13,6 @@ const Deep: React.FC = function () {
       </Box>
     </div>
   );
-}
+};
 
 export default Deep;
