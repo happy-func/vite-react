@@ -4,7 +4,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import styles from '@/components/Layout/header.module.scss';
 import { AppSlideBarState, UpdateAppSlideBar } from '@/store/action';
 
 interface Props {
@@ -12,7 +11,8 @@ interface Props {
   doUpdateAppSlideBar: UpdateAppSlideBar;
 }
 
-const drawerWidth = 240;
+export const drawerWidth = 240;
+export const miniDrawerWidth = 80;
 
 const Header: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) {
   function changeOpenDrawerHandle() {
@@ -47,7 +47,7 @@ const Header: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) 
           }}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap className={styles.title} />
+        <Typography variant="h6" noWrap sx={{ flex: 1 }} />
       </Toolbar>
     </AppBar>
   );

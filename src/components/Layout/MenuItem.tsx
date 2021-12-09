@@ -19,20 +19,38 @@ import { MenuItem as MenuItemProps } from '@/store/action';
 export default function MenuItem({
   route,
   open = true,
+  onSelect
 }: {
   route: MenuItemProps;
   open: boolean;
+  onSelect: (key: string | number) => void;
 }) {
+  const onClick = () => onSelect && onSelect(route.name);
   return (
-    <Accordion disableGutters>
-      <AccordionSummary expandIcon={open && <ExpandMore />}>
+    <Accordion
+      disableGutters
+      sx={{
+        boxShadow: `none`,
+        '& ::before': {
+          opacity: 0
+        }
+      }}
+    >
+      <AccordionSummary
+        expandIcon={open && route.children?.length && <ExpandMore />}
+        onClick={onClick}
+      >
         {!!route.meta.icon && <Icon>{route.meta.icon}</Icon>}
         {open && <Typography>{route.meta.title}</Typography>}
       </AccordionSummary>
       {Array.isArray(route.children) && (
-        <AccordionDetails>
+        <AccordionDetails
+          sx={{
+            paddingRight: 0
+          }}
+        >
           {route.children.map((item) => (
-            <MenuItem route={item} {...item} open={open} key={item.name} />
+            <MenuItem route={item} open={open} key={item.name} onSelect={onSelect} />
           ))}
         </AccordionDetails>
       )}

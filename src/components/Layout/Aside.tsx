@@ -8,20 +8,18 @@ import routes from '@/router/route';
 import { AppSlideBarState, UpdateAppSlideBar } from '@/store/action';
 import { MenuItem as MenuItemProps } from '@/store/action';
 
-import styles from './aside.module.scss';
+import {Box} from "@mui/material";
+import {drawerWidth, miniDrawerWidth} from "@/components/Layout/Header";
 
 interface Props {
   AppSlideBar: AppSlideBarState;
   doUpdateAppSlideBar: UpdateAppSlideBar;
 }
 
-// const { SubMenu } = Menu;
-
 const Aside: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) {
   const history = useHistory();
   // @ts-ignore
-  function onMenuSelect(e) {
-    const { key } = e;
+  function onMenuSelect(key) {
     if (AppSlideBar.openKey !== key) {
       doUpdateAppSlideBar({
         ...AppSlideBar,
@@ -50,37 +48,49 @@ const Aside: React.FC<Props> = function ({ AppSlideBar, doUpdateAppSlideBar }) {
       });
     }
   }
-  // const MenuItem = ({ route, ...props }: { route: MenuItemProps }) =>
-  //   route.children?.length ? (
-  //     <SubMenu
-  //       title={route.meta.title}
-  //       key={route.name}
-  //       icon={route.meta.icon || <div />}
-  //       {...props}>
-  //       {route.children.map((child) => (
-  //         <MenuItem route={child} key={child.name} />
-  //       ))}
-  //     </SubMenu>
-  //   ) : (
-  //     <Menu.Item key={route.name} icon={route.meta.icon || <div />} {...props}>
-  //       {route.meta.title}
-  //     </Menu.Item>
-  //   );
   return (
-    <div
-      style={{ width: 240, height: '100vh' }}
-      className={AppSlideBar.openDrawer ? '' : styles.tinyMenu}>
-      <div
-        className={`${styles.fixedMenu} ${AppSlideBar.openDrawer ? '' : styles.tinyMenu}`}
-        style={{ width: 240, height: '100vh' }}>
-        <div className={styles.asideTitle}>
+    <Box
+      sx={{
+        width: AppSlideBar.openDrawer ? drawerWidth : 80, height: '100vh', flexShrink: 0,
+        transition: (theme) =>
+          theme.transitions.create([`width`], {
+            easing: AppSlideBar.openDrawer ? theme.transitions.easing.easeOut : theme.transitions.easing.sharp,
+            duration: AppSlideBar.openDrawer ? theme.transitions.duration.enteringScreen : theme.transitions.duration.leavingScreen,
+          }),
+      }}
+    >
+      <Box
+        sx={{
+          width: `${AppSlideBar.openDrawer ? drawerWidth : miniDrawerWidth}px`,
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          zIndex: 89,
+          transition: (theme) =>
+            theme.transitions.create([`width`], {
+              easing: AppSlideBar.openDrawer ? theme.transitions.easing.easeOut : theme.transitions.easing.sharp,
+              duration: AppSlideBar.openDrawer ? theme.transitions.duration.enteringScreen : theme.transitions.duration.leavingScreen,
+            }),
+        }}
+      >
+        <Box
+          sx={{
+            height: `62px`,
+            lineHeight: `62px`,
+            fontSize: `20px`,
+            backgroundColor: `#3f51b5`,
+            color: `#fff`,
+            textAlign: `center`
+          }}
+        >
           {AppSlideBar.openDrawer && `SYSTEM 管理后台`}
-        </div>
+        </Box>
         {routes.map((route) => (
-          <MenuItem route={route} key={route.name} open={!!AppSlideBar.openDrawer} />
+          <MenuItem route={route} key={route.name} open={!!AppSlideBar.openDrawer} onSelect={onMenuSelect} />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

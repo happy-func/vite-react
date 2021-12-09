@@ -18,6 +18,7 @@ const AppMain: React.FC = ({ children }) => {
     <Box
       sx={{
         display: `flex`,
+        width: `100vw`
       }}>
       <Header />
       <Aside />
@@ -26,6 +27,7 @@ const AppMain: React.FC = ({ children }) => {
           flexGrow: 1,
           padding: (theme) => theme.spacing(3),
           position: `relative`,
+          overflow: 'hidden'
         }}>
         <StyledBox />
         {children}
