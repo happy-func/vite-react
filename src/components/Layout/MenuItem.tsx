@@ -25,7 +25,7 @@ export default function MenuItem({
   open: boolean;
   onSelect: (key: string | number) => void;
 }) {
-  const onClick = () => onSelect && onSelect(route.name);
+  const onClick = () => !route.children?.length && onSelect && onSelect(route.name);
   return (
     <Accordion
       disableGutters
